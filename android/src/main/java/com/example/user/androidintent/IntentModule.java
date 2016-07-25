@@ -67,6 +67,9 @@ public class IntentModule extends ReactContextBaseJavaModule{
         else if(end.equals("docx")) {
             intent = getDocxFileIntent(filePath);
         }
+        else if(end.equals("html")) {
+                intent = getHtmlFileIntent(filePath);
+        }
         Log.i(TAG, filePath);
         //打开
         if(intent != null && isIntentAvailable(intent)) {
@@ -88,15 +91,15 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return list.size() > 0;
     }
 
-    // android获取一个用于打开HTML文件的intent  
+    // android获取一个用于打开HTML文件的intent
     private Intent getHtmlFileIntent(String param) {
-        Uri uri = Uri.parse(param).buildUpon().encodedAuthority("com.android.htmlfileprovider").scheme("content").encodedPath(param).build();
+        Uri uri = Uri.fromFile(new File(param));
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.setDataAndType(uri, "text/html");
         return intent;
     }
 
-    // android获取一个用于打开图片文件的intent  
+    // android获取一个用于打开图片文件的intent
     private Intent getImageFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
@@ -106,7 +109,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开PDF文件的intent  
+    // android获取一个用于打开PDF文件的intent
     private Intent getPdfFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
@@ -116,7 +119,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开文本文件的intent  
+    // android获取一个用于打开文本文件的intent
     private Intent getTextFileIntent(String param, boolean paramBoolean) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
@@ -131,7 +134,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开音频文件的intent  
+    // android获取一个用于打开音频文件的intent
     private Intent getAudioFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -142,7 +145,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开视频文件的intent  
+    // android获取一个用于打开视频文件的intent
     private Intent getVideoFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -153,7 +156,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开CHM文件的intent  
+    // android获取一个用于打开CHM文件的intent
     private Intent getChmFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
@@ -163,7 +166,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开Word文件的intent  
+    // android获取一个用于打开Word文件的intent
     private Intent getWordFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
@@ -183,7 +186,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开Excel文件的intent  
+    // android获取一个用于打开Excel文件的intent
     private Intent getExcelFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
@@ -193,7 +196,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
         return intent;
     }
 
-    // android获取一个用于打开PPT文件的intent  
+    // android获取一个用于打开PPT文件的intent
     private Intent getPptFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
