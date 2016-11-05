@@ -40,7 +40,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
             intent = getAudioFileIntent(filePath);
         }
         else if(end.equals("3gp")||end.equals("mp4")){
-            intent = getAudioFileIntent(filePath);
+            intent = getVideoFileIntent(filePath);
         }
         else if(end.equals("jpg")||end.equals("gif")||end.equals("png")||
                 end.equals("jpeg")||end.equals("bmp")){
@@ -138,6 +138,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
     private Intent getAudioFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("oneshot", 0);
         intent.putExtra("configchange", 0);
         Uri uri = Uri.fromFile(new File(param));
@@ -149,6 +150,7 @@ public class IntentModule extends ReactContextBaseJavaModule{
     private Intent getVideoFileIntent(String param) {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("oneshot", 0);
         intent.putExtra("configchange", 0);
         Uri uri = Uri.fromFile(new File(param));
